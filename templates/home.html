@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+    <div class="container my-4 post-wrapper">
+        <!-- Search Start -->
+        <div class="jumbotron border shadow">
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form action="{% url 'search' %}" method="GET" role="search">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="search_keyword"  id="tags" type="text" placeholder="Search" class="form-control form-control-lg" />
+                            <div class="input-group-append">
+                                <button class="btn btn-dark btn-lg">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+        <!-- End Search -->
+    </div>
+    <!-- <div class="row">
+        {% if company_key %}
+        {% for company in company_key %}
+            <div class="col-md-4">
+                <figure class="card card-product-grid">
+                    <figcaption class="info-wrap">
+                        <div class="fix-height">
+                            <a href="#" class="title">{{ company.companyName }}</a>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div> 
+        {% endfor %}
+        {% else %} 
+            <h2 class="text-center">No Result Found!</h2>
+        {% endif %}
+    </div>  -->
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="row">
+            <aside class="col-lg-9">
+                {% if not watchlist_items %}
+                <h2>Watchlist is Empty</h2>
+                {% else %}
+                <div class="card">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                        <th scope="col">Company</th>
+                        <th scope="col" width="120">PRICE</th>
+                        <th scope="col" width="120">52 WK HIGH	</th>
+                        <th scope="col" width="120">52 WK LOW</th>
+                        <th scope="col" class="text-right" width="100"></th>
+                        <th scope="col" class="text-right" width="200"> </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for watchlist_item in watchlist_items %}
+                            <tr>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <!-- <div class="aside"><img src="./images/items/11.jpg" class="img-sm"></div> -->
+                                        <figcaption class="info">
+                                            <a href="http://127.0.0.1:8000/search/?search_keyword={{ watchlist_item.company.companyName }}" class="title text-dark">{{ watchlist_item.company.companyName }}</a>
+                                            <!-- <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p> -->
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> 
+                                    <div class="price-wrap"> 
+                                        <var class="price">{{ watchlist_item.lastPrice }}</var> 
+                                        <!-- <small class="text-muted"> $315.20 each </small>  -->
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="price-wrap"> 
+                                        <var class="price">{{ watchlist_item.high52 }}</var> <br>
+                                        <small class="text-muted"> 12/8/21 </small> 
+                                    </div>
+                                </td>
+                                <td> 
+                                    <div class="price-wrap"> 
+                                        <var class="price">{{ watchlist_item.low52 }}</var> 
+                                        <!-- <small class="text-muted"> $315.20 each </small>  -->
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{ forloop.counter }}" aria-expanded="true" aria-controls="{{ forloop.counter }}">Price Dips</button>
+                                </td>
+                                <td class="text-right"> 
+                                    <!-- <button class="btn btn-info" onclick="myFunction()">Try it</button> &nbsp; -->
+                                    <a href="{% url 'remove_btn' watchlist_item.company.id watchlist_item.id  %}" class="btn btn-danger"> Remove</a>
+                                </td>
+                                <tr>
+                                    <td>
+                                        <div id="{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div class="container-fluid">
+                                                <div class="col-md-4"></div>
+                                                {% for price in watchlist_item.price_list %}
+                                                    <p>{{ forloop.counter }}.  {{ price }}</p>
+                                                {% endfor %}
+                                            </div>
+                                          </div>
+                                    </td>
+                                    <td></td><td></td><td></td><td></td><td></td>
+                                </tr>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div> 
+                {% endif %}
+            </aside>
+        </div> 
+    </div>
+</section>
+{% endblock %}

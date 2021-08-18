@@ -1,0 +1,88 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img class="logo" src="{% static './images/logo.png' %}">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      
+      <!-- <ul class="navbar-nav">
+        <li>
+          <a href="{% url 'watchlist' %}" class="widget-header pl-3 ml-3">
+            <div class="icon icon-sm rounded-circle border"><i class="fas fa-eye"></i></div>
+            <span class="badge badge-pill badge-danger notify">{{ watchlist_count }}</span>
+          </a>
+        </li>
+      </ul> -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <ul class="navbar-nav ml-auto">
+          {% if user.id is None %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">
+                <i class="fab fa-facebook-f"></i> Register<!-- fab fa-facebook-f -->
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fab fa-instagram"></i> Login</a> <!-- fab fa-instagram -->
+            </li>
+          {% else %}
+          <span class="navbar-text white-text">
+            Welcome, {{ user.first_name }}  &nbsp; &nbsp;
+          </span>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user"></i> Profile </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                <a class="dropdown-item" href="{% url 'watchlist' %}">View Watchlist &nbsp;<span class="badge badge-pill badge-danger notify">{{ watchlist_count }}</span></a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+              </div>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+<!-- GreatKart Nav -->
+  <!-- <header class="section-header">
+    <section class="header-main border-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="{% url 'home' %}" class="brand-wrap">
+                        <img class="logo" src="{% static './images/logo.png' %}">
+                    </a> 
+                </div>
+                <div class="col-lg  col-md-6 col-sm-12 col">
+                    <form action="{% url 'search' %}" class="search" method="GET">
+                        <div class="input-group w-100">
+                            <input name="search_keyword"  id="tags" type="text" class="form-control" style="width:60%;" placeholder="Search">
+                            
+                            <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            </div>
+                        </div>
+                    </form> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+</header>  -->

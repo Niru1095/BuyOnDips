@@ -1,0 +1,9 @@
+<!-- So actually we use this autoescape off it because we are going to render the Html inside this 
+so actually this is the safest way of rendering the HTMl when we are sending the e-mails. -->
+
+{% autoescape off %} 
+Hi {{ user.first_name }} 
+Please click on the below to confirm your registeration.
+http://{{domain}}{% url 'activate' uidb64=uid token=token %} 
+
+{% endautoescape %}
